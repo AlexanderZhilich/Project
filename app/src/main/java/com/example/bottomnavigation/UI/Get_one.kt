@@ -41,6 +41,7 @@ class Get_one : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         (activity as AppCompatActivity).supportActionBar!!.show()
         (activity as AppCompatActivity). bottomNavigationView.visibility = View.VISIBLE
+        (activity as AppCompatActivity).fab.visibility=View.VISIBLE
         super.onViewCreated(view, savedInstanceState)
         val queryBuilder = QueryBuilder()
         navController = findNavController()
