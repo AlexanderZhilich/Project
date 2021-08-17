@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/all"
+        android:icon="@drawable/ic_baseline_view_list_24"
+        android:title="@string/Tolerances_list" />
+    <item
+        android:id="@+id/get_one"
+        android:icon="@drawable/ic_baseline_calculate_24"
+        android:title="@string/Get_tolerance" />
+
+</menu>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="5dp">
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    >
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Размер"
+        android:textColor="@color/orange"
+        android:textStyle="bold"
+        />
+        <TextView
+            android:id="@+id/variation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/value"
+            android:text="Отклонения"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/orange"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/value"
+            android:textSize="30dp"
+            android:text="Размер"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/up_variation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/variation"
+            android:layout_alignStart="@+id/variation"
+            android:textSize="15dp"
+            android:text="Верхнеее отклонение"
+            android:textStyle="italic"
+            />
+        <TextView
+            android:id="@+id/dw_variation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/up_variation"
+            android:layout_alignStart="@+id/variation"
+            android:textSize="15dp"
+            android:text="Нижнее отклонение"
+            android:textStyle="italic"
+            />
+
+
+        <TextView
+            android:id="@+id/sizes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="П. размеры"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/up_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/sizes"
+            android:layout_alignStart="@+id/sizes"
+            android:textSize="15dp"
+            android:text="В. размер"
+            android:textStyle="italic"
+            />
+        <TextView
+            android:id="@+id/dw_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/up_variation"
+            android:layout_alignStart="@+id/sizes"
+            android:textSize="15dp"
+            android:text="Н. размер"
+            android:textStyle="italic"
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
