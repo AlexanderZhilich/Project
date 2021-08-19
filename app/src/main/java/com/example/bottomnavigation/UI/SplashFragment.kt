@@ -21,16 +21,17 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        Handler().postDelayed(
-            { findNavController().navigate(R.id.action_splashFragment_to_get_one) },
-            3000
-        )
 
         return inflater.inflate(R.layout.fragment_splash, container, false)
 
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         (activity as AppCompatActivity).supportActionBar!!.hide()
-        (activity as AppCompatActivity). bottomNavigationView.visibility = View.GONE}
-
+        (activity as AppCompatActivity).bottomNavigationView.visibility = View.GONE
+        val navController = findNavController()
+        Handler().postDelayed(
+            { navController.navigate(R.id.action_splashFragment_to_get_one) }, 1500
+        )
+    }
 }

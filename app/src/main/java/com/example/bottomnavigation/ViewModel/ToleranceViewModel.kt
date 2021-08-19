@@ -7,8 +7,9 @@ import com.example.bottomnavigation.Repository.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ToleranceViewModel(val repository: Repository) : ViewModel() {
+class ToleranceViewModel @Inject constructor( val repository: Repository) : ViewModel() {
     private val scope = CoroutineScope(Dispatchers.IO)
     val tolerancesLive: MutableLiveData<MutableList<FullTolerance>> by lazy {
         MutableLiveData<MutableList<FullTolerance>>(mutableListOf())/*Обёртка не может быть пустой*/
