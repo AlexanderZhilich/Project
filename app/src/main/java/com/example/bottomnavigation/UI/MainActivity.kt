@@ -1,6 +1,7 @@
 package com.example.bottomnavigation.UI
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
@@ -24,18 +25,23 @@ import com.example.bottomnavigation.ViewModel.ToleranceViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var viewModel: ToleranceViewModel
     lateinit var navController: NavController
-
     @Inject
     lateinit var factory: ToleranceViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.getDefaultNightMode())
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val navHostFragment =
@@ -45,6 +51,15 @@ class MainActivity : AppCompatActivity() {
         val instruction = R.string.Instruction
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigationView.setupWithNavController(navController)
+        Handler().postDelayed(
+            {  val instruction2 = R.string.Instruction2
+                val text =
+                    instruction2
+                val duration = Toast.LENGTH_LONG
+                val toast = Toast.makeText(this, text, duration)
+                toast.setGravity(Gravity.CENTER, 0, 0)
+                toast.show() }, 3000
+        )
         fab.setOnClickListener {
             val dialogBuilder = AlertDialog.Builder(this)
             dialogBuilder
@@ -66,11 +81,6 @@ class MainActivity : AppCompatActivity() {
         val factory = ToleranceViewModelFactory(repository)*/
         viewModel = ViewModelProvider(this, factory).get(ToleranceViewModel::class.java)
         /* viewModel.tolerancesLive.setValue(mutableListOf())*/
-
-        /*Запрет на тёмную тему*/
-        AppCompatDelegate.setDefaultNightMode(
-            AppCompatDelegate.MODE_NIGHT_NO
-        )
     }
 
 }

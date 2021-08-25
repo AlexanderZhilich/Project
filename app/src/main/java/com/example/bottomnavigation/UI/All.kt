@@ -36,7 +36,7 @@ class All : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         (activity as AppCompatActivity).supportActionBar!!.show()
         (activity as AppCompatActivity).bottomNavigationView.visibility = View.VISIBLE
-        (activity as AppCompatActivity).fab.visibility=View.VISIBLE
+        (activity as AppCompatActivity).fab.visibility=View.GONE
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
         viewModel.tolerancesLive.observe(viewLifecycleOwner, Observer {

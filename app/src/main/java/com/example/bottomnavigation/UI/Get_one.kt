@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -29,7 +30,6 @@ import java.lang.Exception
 class Get_one : Fragment() {
     lateinit var navController: NavController
     lateinit var viewModel: ToleranceViewModel
-    var tolerances = mutableListOf<FullTolerance>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,8 +40,8 @@ class Get_one : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         (activity as AppCompatActivity).supportActionBar!!.show()
-        (activity as AppCompatActivity). bottomNavigationView.visibility = View.VISIBLE
-        (activity as AppCompatActivity).fab.visibility=View.VISIBLE
+        (activity as AppCompatActivity).bottomNavigationView.visibility = View.VISIBLE
+        (activity as AppCompatActivity).fab.visibility = View.VISIBLE
         super.onViewCreated(view, savedInstanceState)
         val queryBuilder = QueryBuilder()
         navController = findNavController()
@@ -50,6 +50,10 @@ class Get_one : Fragment() {
         val arrayAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_item, tolerancesDroppingOutList)
         autoCompleteTextView.setAdapter(arrayAdapter)
+
+
+
+
         buttonGetOne.setOnClickListener {
             val tolerance = autoCompleteTextView.text.toString()
             if (tolerance != "Выберите посадку") {
@@ -60,15 +64,22 @@ class Get_one : Fragment() {
                     val size = sizeIn.toDouble()
                     val sizeUp = queryBuilder.sizeUpRequest(size)
                     val sizeDw = queryBuilder.sizeDwRequest(size)
+                    Log.d("2",sizeUp)
+                    Log.d("2",sizeDw)
                     val fullSize = size.toString() + tolerance
-                     val toleranceUp = queryBuilder.getTolerance(
-                     viewModel.getOneTolerance(sizeUp),
-                     toleranceRequest
-                 )
-                     val toleranceDw = queryBuilder.getTolerance(
-                         viewModel.getOneTolerance(sizeDw),
-                         toleranceRequest
-                     )
+
+                    val toleranceUp = queryBuilder.getTolerance(
+                        viewModel.getOneTolerance(sizeUp),
+                        toleranceRequest
+                    )
+                    Log.d("2",viewModel.getOneTolerance(sizeUp))
+                    Log.d("2",viewModel.getOneTolerance(sizeDw))
+                    Log.d("2",toleranceUp)
+                    val toleranceDw = queryBuilder.getTolerance(
+                        viewModel.getOneTolerance(sizeDw),
+                        toleranceRequest
+                    )
+                    Log.d("2",toleranceDw)
                     if (toleranceUp != "-" && toleranceDw != "-") {
                         if (toleranceUp != "?" && toleranceDw != "?") {
                             val fullTolerance = FullTolerance(
@@ -77,8 +88,10 @@ class Get_one : Fragment() {
                                 toleranceDw.toDouble(),
                                 size + toleranceUp.toDouble(),
                                 size + toleranceDw.toDouble()
+
                             )
                             viewModel.addToTolerancesLive(fullTolerance)
+                            edSize.text.clear()
                         } else {
 
                             val text =
